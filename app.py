@@ -19,11 +19,11 @@ UPLOAD_FOLDER = r"static/output"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # # # # model define
 # pull model on github
-# model = torch.hub.load('ultralytics/yolov5', 'custom', path=r"static/detection_part/weight/best_4classes.pt",
-#                        force_reload=True)
+model = torch.hub.load('ultralytics/yolov5', 'custom', path=r"static/detection_part/weight/best_4classes.pt",
+                       force_reload=True)
 # local repo model
-model = torch.hub.load('static/custom_train_model/yolov5', 'custom',
-                       path="static/detection_part/weight/best_4classes.pt", source='local', force_reload=True)
+# model = torch.hub.load('static/custom_train_model/yolov5', 'custom',
+#                        path="static/detection_part/weight/best_4classes.pt", source='local', force_reload=True)
 model.conf = 0.9
 
 
