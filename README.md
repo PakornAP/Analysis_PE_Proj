@@ -2,7 +2,8 @@
 SCG => proj
 
 # Step
-
-1st run command "pip install requirements.txt "
+- create venv "python -m venv myvenv"
+- activate your venv
+- run command "pip install -r requirements.txt "
 
 # Dataset Link
