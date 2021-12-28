@@ -116,3 +116,5 @@ dmypy.json
 # Dataset ignore
 train/
 valid/
+# Yolov5 submodule ignore
+yolov5/
