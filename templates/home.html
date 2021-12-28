@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <link href="../static/style/home.css" rel="stylesheet"></link>
+    <title>Flask API</title>
+</head>
+<body>
+
+<div class="card" id="upload">
+    <div class="card-body">
+        <h2 class="card-title">Choose your video file to detect</h2>
+        <!--        <img class="hide" id="spinner"-->
+<!--             src="https://i.pinimg.com/originals/be/ce/0c/bece0c797cb134aefb2cb836578c9249.gif">-->
+        <img class="hide" id="spinner" src="{{url_for('video_feed')}}">
+<!--        <img class="hide" id="spinner" src="static/style/loading.jpg">-->
+        <form action="/home" enctype="multipart/form-data" id="my-form" method="POST" onchange="change()">
+            <label id="upload-but"><input hidden id="fileUpload" name="fileUpload"
+                                          type="file"><span id="selected">Ready</span><span
+                    id="empty">choose file</span></label>
+            <p class="card-content" id="infos" ></p>
+            <button class="btn btn-dark btn-lg" onclick="showprogress()" type="submit">submit</button>
+        </form>
+
+
+        <div class="progress" id="progress">
+            <div
+                    aria-valuemax="100"
+                    aria-valuemin="0"
+                    aria-valuenow="0"
+                    class="progress-bar"
+                    id="progress-bar"
+                    role="progressbar"
+                    style="width: 0%"
+            ></div>
+        </div>
+
+        <h4 class="card-text">Please wait until , You can download the file </h4>
+    </div>
+</div>
+<script crossorigin="anonymous"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+    // hide form show load  _______________
+    const form = document.getElementById('my-form');
+    const spinner = document.getElementById('spinner');
+    form.addEventListener('submit', (e) => {
+        form.classList.toggle('fade-out');
+        spinner.classList.toggle('show');
+        console.log(spinner)
+    });
+    // change text and color  _______________
+    const change = () => {
+        let val = document.getElementById('fileUpload').value
+        let selected = document.getElementById('selected')
+        let empty = document.getElementById('empty')
+
+        if (val === "") {
+            selected.style.display = 'none'
+            empty.style.display = 'block';
+        } else {
+            selected.style.display = 'block';
+            empty.style.display = 'none';
+            document.getElementById('upload-but').style.border = "3px solid #14F48F"
+        }
+    }
+    // get video duration
+    var myVideos;
+
+    window.URL = window.URL || window.webkitURL;
+
+    document.getElementById("fileUpload").onchange = setFileInfo;
+
+    let global_duration = 0
+
+    function setFileInfo() {
+        var files = this.files;
+        myVideos = files[0]
+        var video = document.createElement("video");
+        video.preload = "metadata";
+
+        video.onloadedmetadata = function () {
+            window.URL.revokeObjectURL(video.src);
+            var duration = video.duration;
+            myVideos.duration = duration;
+            global_duration = duration
+            updateInfos();
+        };
+        video.src = URL.createObjectURL(files[0]);
+    }
+
+    function updateInfos() {
+        var infos = document.getElementById("infos");
+        infos.style.display = "block"
+        infos.textContent =
+            // myVideos.name + " duration: " + myVideos.duration + "\n" +
+            'Detection take time : ' + Math.round(((myVideos.duration * 3))) + 'seconds'
+    }
+
+    // progress bar
+    const showprogress = () => {
+        console.log(global_duration)
+        var step = 100 / ((global_duration * 3)+ 15);
+        const bar = document.getElementById("progress");
+        bar.style.display = "block";
+        var num = 0;
+        var loop = setInterval(() => {
+            // console.log(num)
+            num = num + step;
+            document.getElementById("progress-bar").style.width = num + "%";
+            if (num >= 100) {
+                clearInterval(loop);
+            }
+        }, 1000);
+    };
+</script>
+</body>
+</html>

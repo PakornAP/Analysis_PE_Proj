@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url("getty.jpg");
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*backdrop-filter: blur(2px);*/
+    /*-webkit-backdrop-filter: blur(2px);*/
+}
+
+h2 {
+    margin: 1%;
+}
+
+form {
+    margin: auto;
+}
+
+input {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+button {
+    font-size: 20px !important;
+    margin-top: 5vh;
+    width: 70%;
+}
+
+.card {
+    /*width: 50vh;*/
+    height: 80vh;
+    border: 2px solid black;
+    border-radius: 3%;
+    opacity: 0.9;
+    width: 50%;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+    max-height: 100%;
+}
+
+#upload-but {
+    border: 3px solid #eaaaaa;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+#upload-but span {
+    font-size: 50px;
+    font-family: "Bell MT";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.fade-out {
+    display: none;
+}
+.hide.show {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+#selected{
+    display: none;
+}
+#empty{
+    display: block;
+}
+.hide {
+    display: none;
+}
+p{
+    display: none;
+    margin-top: 1%;
+    font-family: Leelawadee;
+    font-size: 16px;
+    padding: 1%;
+}
+#progress {
+  display: none;
+    width: 100%;
+    height: 5%;
+}
+#spinner{
+    width:70%;
+    margin: 2% 0 2% 0;
+    max-height: 60%;
+    object-fit: contain;
+}

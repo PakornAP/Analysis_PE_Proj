@@ -1,0 +1,5 @@
+train: r'static/custom_train_model/dataset/train/images'
+val: r'static/custom_train_model/dataset/valid/images'
+
+nc: 4
+names: ['Black_Spot', 'Tail', 'White_Puffy', 'Yellow_Spot']

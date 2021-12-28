@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+<!--    <link href="static/style/reult.css" rel="stylesheet"></link>-->
+    <link href="../static/style/result.css" rel="stylesheet"></link>
+    <title>Flask API</title>
+</head>
+<body>
+<script crossorigin="anonymous"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<div class="card" id="upload">
+    <div class="card-body">
+        <h2 class="card-title">Click to download</h2>
+        <h2 class="card-content"><a href="{{ url_for('uploads_to_client', name=name) }}">Download</a></h2>
+        <img src="https://png.pngtree.com/png-vector/20190228/ourmid/pngtree-check-mark-icon-design-template-vector-isolated-png-image_711433.jpg" class="check">
+        <h4 class="card-text">Your request is success</h4>
+        <a class="back-home" href="http://127.0.0.1:5000/home">Back to home Page</a>
+    </div>
+
+</div>
+<!-- <button onclick="getpath('fileUpload')">Click me!</button> -->
+</body>
+</html>
+
+
